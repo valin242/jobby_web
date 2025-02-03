@@ -1,0 +1,452 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Jobby</title>
+    <style>
+        body { 
+            width: 300px; 
+            padding: 10px; 
+            font-family: Arial, sans-serif;
+        }
+        .form-group { 
+            margin-bottom: 10px; 
+        }
+        .button { 
+            background: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 5px;
+        }
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .fill-button {
+            background: #2196F3;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .message {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            display: none;
+        }
+        .success {
+            background: #dff0d8;
+            color: #3c763d;
+        }
+        .error {
+            background: #f2dede;
+            color: #a94442;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h2>Jobby - Job Application Tracker</h2>
+    <div class="form-group">
+        <label>Company:</label>
+        <input type="text" id="company" />
+    </div>
+    <div class="form-group">
+        <label>Job Title:</label>
+        <input type="text" id="jobTitle" />
+    </div>
+    <div class="form-group">
+        <label>Description Summary:</label>
+        <textarea id="description" rows="4"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Status:</label>
+        <select id="status">
+            <option value="applied">Applied</option>
+            <option value="interview">Interview</option>
+            <option value="rejected">Rejected</option>
+            <option value="offer">Offer</option>
+        </select>
+    </div>
+    <div class="button-group">
+        <button id="fill" class="button fill-button">Fill</button>
+        <button id="save" class="button">Save Application</button>
+    </div>
+    <div id="message" class="message"></div>
+    <script src="popup.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jobby</title>
+    <style>
+        :root {
+            --primary: #94A3B8;
+            --primary-dark: #64748B;
+            --accent: #818CF8;
+            --accent-dark: #6366F1;
+            --background: #F8FAFC;
+            --surface: #FFFFFF;
+            --text: #334155;
+            --text-light: #64748B;
+            --success: #86EFAC;
+            --error: #FDA4AF;
+            --input-bg: #F1F5F9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body { 
+            width: 320px;
+            min-height: 580px;
+            background: 
+                linear-gradient(120deg, 
+                    rgba(129, 140, 248, 0.95) 0%, 
+                    rgba(99, 102, 241, 0.95) 100%),
+                repeating-linear-gradient(
+                    45deg,
+                    rgba(255, 255, 255, 0.1) 0px,
+                    rgba(255, 255, 255, 0.1) 2px,
+                    transparent 2px,
+                    transparent 8px
+                );
+            background-attachment: fixed;
+            color: var(--text);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Enhanced decorative background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 50% 50%, rgba(129, 140, 248, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            opacity: 0.7;
+            z-index: 0;
+            animation: backgroundFloat 20s ease-in-out infinite alternate;
+        }
+
+        /* Add floating animation */
+        @keyframes backgroundFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(-2%, -2%) scale(1.05);
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            min-height: 100%;
+            border-radius: 12px;
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            animation: containerFloat 0.5s ease-out;
+        }
+
+        /* Container animation */
+        @keyframes containerFloat {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+                backdrop-filter: blur(0px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                backdrop-filter: blur(16px);
+            }
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            margin: -20px -20px 20px -20px;
+            padding: 20px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 0;
+        }
+
+        .form-group { 
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-bottom: 0.375rem;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.625rem;
+            border: 1px solid rgba(129, 140, 248, 0.3);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 
+                0 0 0 3px rgba(129, 140, 248, 0.2),
+                0 2px 4px rgba(0, 0, 0, 0.02),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .button {
+            flex: 1;
+            padding: 0.625rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0)
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .button:hover::after {
+            opacity: 1;
+        }
+
+        .fill-button {
+            background: var(--accent);
+            color: white;
+        }
+
+        .fill-button:hover {
+            background: var(--accent-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .save-button {
+            background: white;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .save-button:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .success {
+            background: var(--success);
+            color: #064E3B;
+        }
+
+        .error {
+            background: var(--error);
+            color: #881337;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            padding-right: 2.5rem;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(241, 245, 249, 0.6);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(129, 140, 248, 0.6);
+            border-radius: 4px;
+            border: 2px solid rgba(241, 245, 249, 0.6);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.8);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <svg class="logo" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="14" fill="#818CF8"/>
+                <path d="M11 12h10v-2c0-1.1-.9-2-2-2h-6c-1.1 0-2 .9-2 2v2z" fill="white"/>
+                <path d="M21 12h-10v8c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2v-8z" fill="white"/>
+                <circle cx="16" cy="16" r="2" fill="#818CF8"/>
+            </svg>
+            <h2>Jobby</h2>
+        </div>
+        <div class="form-group">
+            <label>Company</label>
+            <input type="text" id="company" placeholder="Enter company name"/>
+        </div>
+        <div class="form-group">
+            <label>Job Title</label>
+            <input type="text" id="jobTitle" placeholder="Enter job title"/>
+        </div>
+        <div class="form-group">
+            <label>Description Summary</label>
+            <textarea id="description" placeholder="Brief description of the role"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Status</label>
+            <select id="status">
+                <option value="applied">Applied</option>
+                <option value="interview">Interview</option>
+                <option value="rejected">Rejected</option>
+                <option value="offer">Offer</option>
+            </select>
+        </div>
+        <div class="button-group">
+            <button id="fill" class="button fill-button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                Fill
+            </button>
+            <button id="save" class="button save-button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                    <polyline points="17 21 17 13 7 13 7 21"/>
+                    <polyline points="7 3 7 8 15 8"/>
+                </svg>
+                Save
+            </button>
+        </div>
+        <div id="message" class="message"></div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
