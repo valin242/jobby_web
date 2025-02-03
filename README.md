@@ -18,13 +18,12 @@ Jobby is a sleek Chrome extension that helps you track your job applications wit
 
 - **Application Status Tracking**:
   - Track applications as: Applied, Interview, Rejected, or Offer
-  - Save applications to a local CSV file
   - Maintain a comprehensive job application history
 
 ## Installation 🔧
 
 1. Clone this repository:
-git clone https://github.com/yourusername/jobby.git
+git clone https://github.com/valin242/jobby_extension.git
 
 2. Open Chrome and navigate to `chrome://extensions/`
 
@@ -55,7 +54,7 @@ git clone https://github.com/yourusername/jobby.git
 ## Technical Requirements 🛠️
 
 - Chrome browser (latest version recommended)
-- Python 3.x for the backend server
+- Python 3.10.11 for the backend server
 - Required Python packages:
   ```bash
   pip install flask flask-cors requests
