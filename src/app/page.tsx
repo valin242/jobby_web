@@ -1,13 +1,17 @@
 
+import { Sidebar } from "./components/Sidebar";
+import { JobList } from "./components/JobList";
+import { JobDescription } from "./components/JobDescription";
+import { JobProvider } from "./context/JobContext";
+
 export default function Home() {
   return (
-    <div className="flex flex-row h-full grid grid-cols-3 gap-3 border-4 border-blue-500">
-      <div className="rounded-3xl bg-red-200 col-span-2 justify-items-center items-center">
-        <p>List of Applied Jobs</p>
-      </div>        
-      <div className="h-full border-4 border-blue-500 justify-items-center items-center">
-        <p>Click a job for description</p>
+    <JobProvider>
+      <div className="flex h-screen">
+        <Sidebar />
+        <JobList />
+        <JobDescription />
       </div>
-    </div>
+    </JobProvider>
   );
 }

@@ -27,28 +27,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased px-2 h-dvh`}>
-        
-        <div className="flex flex-row border-4 border-purple-500 w-full h-full grid  grid-cols-5 grid-rows-2 gap-2">
-              <div className="row-span-2 row-start-1 col-span-1">
-                <Navigation />
+      <body className="min-h-screen bg-white">
+        <header className="border-b">
+          <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 border rounded flex items-center justify-center text-green-400 text-2xl border-4 font-bold border-green-400">
+                J
               </div>
-              
-              <div className="row-span-1 row-start-1 col-span-4">
-                <Header />
-              </div>
-              <div className="row-span-1 row-start-2 col-span-4">
-                {children}
-              </div>
-  
-{/*            <div className="basis-2/3 border-4 border-blue-500 rounded-3xl bg-green-200 grid items-center justify-items-center">
-              Click a job for description
-            </div>*/}
-        </div>
-               <div className="absolute bottom-0 w-full col-span-5">
-                <Footer />
-              </div>  
-
+              <h1 className="text-2xl font-bold text-green-400">Jobby</h1>
+            </div>
+            <button className="px-4 py-2 border rounded bg-green-400 hover:bg-green-200 text-white font-bold">Log In</button>
+          </div>
+        </header>
+        <main className="container mx-auto px-4 py-6">
+          {children}
+        </main>
+        <div className="absolute bottom-0 w-full col-span-5">
+          <Footer />
+        </div>  
       </body>
     </html>
   );
