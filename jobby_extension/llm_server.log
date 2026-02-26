@@ -1,0 +1,233 @@
+2025-02-02 23:57:39,823 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:3000
+2025-02-02 23:57:39,825 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-03 00:02:38,973 - werkzeug - INFO - 127.0.0.1 - - [03/Feb/2025 00:02:38] "POST /process HTTP/1.1" 200 -
+2025-02-03 00:07:15,877 - werkzeug - INFO - 127.0.0.1 - - [03/Feb/2025 00:07:15] "POST /process HTTP/1.1" 200 -
+2025-02-03 00:35:03,683 - __main__ - ERROR - LLM request timed out
+2025-02-03 00:35:03,727 - __main__ - ERROR - LLM error: LLM request timed out
+Traceback (most recent call last):
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connection.py", line 516, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\http\client.py", line 1375, in getresponse
+    response.begin()
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+TimeoutError: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\util\retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 367, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Coding\jobby_extension\llama_server.py", line 95, in process_with_llm
+    print(f"Error processing request: {str(e)}")
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\adapters.py", line 713, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Coding\jobby_extension\llama_server.py", line 42, in wrapper
+    return f(*args, **kwargs)
+  File "D:\Coding\jobby_extension\llama_server.py", line 77, in process_text
+    }
+  File "D:\Coding\jobby_extension\llama_server.py", line 113, in process_with_llm
+    )
+ProcessingError: LLM request timed out
+
+2025-02-03 00:35:03,757 - werkzeug - INFO - 127.0.0.1 - - [03/Feb/2025 00:35:03] "[35m[1mPOST /process HTTP/1.1[0m" 500 -
+2025-02-03 00:35:05,848 - __main__ - ERROR - LLM request timed out
+2025-02-03 00:35:05,849 - __main__ - ERROR - LLM error: LLM request timed out
+Traceback (most recent call last):
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connection.py", line 516, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\http\client.py", line 1375, in getresponse
+    response.begin()
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+TimeoutError: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\util\retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 367, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Coding\jobby_extension\llama_server.py", line 95, in process_with_llm
+    print(f"Error processing request: {str(e)}")
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\adapters.py", line 713, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Coding\jobby_extension\llama_server.py", line 42, in wrapper
+    return f(*args, **kwargs)
+  File "D:\Coding\jobby_extension\llama_server.py", line 77, in process_text
+    }
+  File "D:\Coding\jobby_extension\llama_server.py", line 113, in process_with_llm
+    )
+ProcessingError: LLM request timed out
+
+2025-02-03 00:35:05,857 - werkzeug - INFO - 127.0.0.1 - - [03/Feb/2025 00:35:05] "[35m[1mPOST /process HTTP/1.1[0m" 500 -
+2025-02-03 00:35:06,155 - __main__ - ERROR - LLM request timed out
+2025-02-03 00:35:06,157 - __main__ - ERROR - LLM error: LLM request timed out
+Traceback (most recent call last):
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connection.py", line 516, in getresponse
+    httplib_response = super().getresponse()
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\http\client.py", line 1375, in getresponse
+    response.begin()
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\http\client.py", line 279, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\socket.py", line 705, in readinto
+    return self._sock.recv_into(b)
+TimeoutError: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\util\retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\urllib3\connectionpool.py", line 367, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Coding\jobby_extension\llama_server.py", line 95, in process_with_llm
+    print(f"Error processing request: {str(e)}")
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\valin\anaconda3\envs\jobbyenv\lib\site-packages\requests\adapters.py", line 713, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Coding\jobby_extension\llama_server.py", line 42, in wrapper
+    return f(*args, **kwargs)
+  File "D:\Coding\jobby_extension\llama_server.py", line 77, in process_text
+    }
+  File "D:\Coding\jobby_extension\llama_server.py", line 113, in process_with_llm
+    )
+ProcessingError: LLM request timed out
+
+2025-02-03 00:35:06,164 - werkzeug - INFO - 127.0.0.1 - - [03/Feb/2025 00:35:06] "[35m[1mPOST /process HTTP/1.1[0m" 500 -
+2025-02-03 00:43:49,369 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:3000
+2025-02-03 00:43:49,369 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-03 00:45:12,551 - werkzeug - INFO - 127.0.0.1 - - [03/Feb/2025 00:45:12] "[31m[1mPOST /process HTTP/1.1[0m" 415 -
+2025-02-03 00:46:18,448 - werkzeug - INFO - 127.0.0.1 - - [03/Feb/2025 00:46:18] "POST /process HTTP/1.1" 200 -
+2025-02-03 00:47:38,624 - werkzeug - INFO - 127.0.0.1 - - [03/Feb/2025 00:47:38] "POST /process HTTP/1.1" 200 -
+2025-02-03 00:50:29,529 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:3000
+2025-02-03 00:50:29,529 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-03 00:50:29,532 - werkzeug - INFO -  * Restarting with stat
+2025-02-03 00:50:30,219 - werkzeug - WARNING -  * Debugger is active!
+2025-02-03 00:50:30,232 - werkzeug - INFO -  * Debugger PIN: 139-558-694
+2025-02-03 00:51:13,592 - __main__ - INFO - Sending structured prompt to Ollama
+2025-02-03 00:51:13,598 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-02-03 00:51:16,355 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 1325
+2025-02-03 00:51:16,356 - __main__ - INFO - Raw Ollama response: {'model': 'llama3.2:3b-text-q8_0', 'created_at': '2025-02-03T05:51:16.354894Z', 'response': '{ "jobTitle": "", "company": "", "description": "" }\n', 'done': True, 'done_reason': 'stop', 'context': [2675, 527, 264, 2683, 17437, 55760, 13, 23673, 1401, 2038, 505, 279, 2768, 2683, 17437, 627, 1084, 12524, 79773, 2991, 1473, 262, 12280, 11106, 25, 19903, 4476, 29483, 198, 262, 8351, 25, 17829, 22621, 7361, 262, 10180, 279, 15766, 512, 262, 1226, 527, 11125, 264, 23944, 4476, 29483, 311, 5249, 1057, 7982, 2128, 13, 578, 10728, 9322, 690, 617, 264, 11939, 369, 4857, 69311, 8522, 323, 3318, 449, 14713, 48448, 14645, 627, 1084, 262, 34884, 512, 262, 482, 220, 18, 10, 1667, 315, 3217, 304, 2539, 57190, 4500, 198, 262, 482, 8626, 10603, 304, 13325, 323, 13210, 198, 262, 482, 21460, 449, 3676, 323, 6146, 2927, 88179, 61524, 701, 2077, 304, 279, 2768, 4823, 3645, 27785, 512, 517, 262, 330, 8975, 3936, 794, 330, 47485, 2683, 2316, 505, 279, 17437, 761, 262, 330, 10348, 794, 330, 10348, 836, 505, 279, 17437, 761, 262, 330, 4789, 794, 330, 17, 12, 18, 11914, 12399, 315, 1401, 28423, 323, 8670, 702, 633, 29690, 25, 720, 16, 13, 40633, 27785, 449, 2764, 4823, 198, 17, 13, 3234, 539, 2997, 904, 5217, 1495, 477, 41941, 198, 18, 13, 1442, 499, 649, 956, 1505, 3738, 2038, 11, 1005, 4384, 9246, 198, 90, 330, 8975, 3936, 794, 7492, 330, 10348, 794, 7492, 330, 4789, 794, 1621, 457], 'total_duration': 705720200, 'load_duration': 21667700, 'prompt_eval_count': 196, 'prompt_eval_duration': 241000000, 'eval_count': 16, 'eval_duration': 442000000}
+2025-02-03 00:51:16,357 - __main__ - INFO - Successfully parsed response: {'jobTitle': '', 'company': '', 'description': ''}
+2025-02-03 00:51:16,358 - werkzeug - INFO - 127.0.0.1 - - [03/Feb/2025 00:51:16] "POST /process HTTP/1.1" 200 -
+2025-02-03 00:53:41,141 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:3000
+2025-02-03 00:53:41,142 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-02-03 00:53:41,144 - werkzeug - INFO -  * Restarting with stat
+2025-02-03 00:53:41,848 - werkzeug - WARNING -  * Debugger is active!
+2025-02-03 00:53:41,858 - werkzeug - INFO -  * Debugger PIN: 139-558-694
+2025-02-03 00:53:54,611 - __main__ - INFO - Pre-extracted - Title: Senior Software Engineer, Company: Tech Corp</h2>
+2025-02-03 00:53:54,616 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2025-02-03 00:53:58,563 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 None
+2025-02-03 00:53:58,563 - __main__ - INFO - Raw Ollama response: {'model': 'llama3.2:3b-text-q8_0', 'created_at': '2025-02-03T05:53:58.5601425Z', 'response': '{\n    "jobTitle": "the job title (use \'Senior Software Engineer\' if accurate, otherwise extract from text)",\n    "company": "the company name (use \'Tech Corp</h2>\' if accurate, otherwise extract from text)",\n    "description": "write 2-3 sentences summarizing the key responsibilities and requirements"\n}\n', 'done': True, 'done_reason': 'stop', 'context': [2127, 56956, 420, 2683, 17437, 323, 8819, 1401, 2038, 13, 5560, 279, 864, 10397, 55535, 2038, 439, 264, 8641, 382, 4808, 10397, 55535, 2038, 512, 12524, 11106, 25, 19903, 4476, 29483, 198, 14831, 25, 17829, 22621, 524, 71, 17, 1363, 9619, 2683, 17437, 1473, 262, 366, 614, 538, 429, 8975, 25414, 287, 891, 286, 366, 71, 16, 29, 48195, 4476, 29483, 524, 71, 16, 397, 1827, 286, 366, 614, 538, 429, 10348, 12788, 891, 310, 366, 71, 17, 29, 14831, 25, 17829, 22621, 524, 71, 17, 397, 310, 366, 79, 29, 4812, 25, 21400, 320, 2078, 12817, 79, 397, 310, 366, 79, 29, 37132, 479, 4078, 25, 8797, 7394, 524, 79, 397, 286, 694, 614, 397, 1827, 286, 366, 614, 538, 429, 8975, 43930, 891, 310, 366, 71, 18, 90668, 279, 15766, 7920, 71, 18, 397, 310, 366, 79, 95286, 527, 11125, 264, 23944, 4476, 29483, 311, 5249, 1057, 7982, 2128, 13, 578, 10728, 9322, 690, 617, 264, 11939, 369, 4857, 69311, 8522, 323, 3318, 449, 14713, 48448, 14645, 4005, 79, 397, 3456, 310, 366, 71, 18, 29, 60302, 7920, 71, 18, 397, 310, 366, 360, 397, 394, 366, 747, 29, 18, 10, 1667, 315, 3217, 304, 2539, 57190, 4500, 524, 747, 397, 394, 366, 747, 29, 19105, 10603, 304, 13325, 323, 13210, 524, 747, 397, 394, 366, 747, 29, 35215, 449, 3676, 323, 6146, 2927, 524, 747, 397, 310, 694, 360, 397, 286, 694, 614, 397, 262, 694, 614, 397, 15152, 61524, 264, 4823, 2077, 304, 420, 4839, 3645, 512, 517, 262, 330, 8975, 3936, 794, 330, 1820, 2683, 2316, 320, 817, 364, 48195, 4476, 29483, 6, 422, 13687, 11, 6062, 8819, 505, 1495, 16129, 262, 330, 10348, 794, 330, 1820, 2883, 836, 320, 817, 364, 35197, 22621, 524, 71, 17, 5709, 422, 13687, 11, 6062, 8819, 505, 1495, 16129, 262, 330, 4789, 794, 330, 5040, 220, 17, 12, 18, 23719, 29385, 4954, 279, 1401, 28423, 323, 8670, 702, 633, 53380, 512, 16, 13, 1442, 279, 864, 10397, 55535, 2038, 374, 13687, 11, 1005, 433, 198, 17, 13, 1442, 499, 1505, 2204, 3554, 22120, 2038, 304, 279, 1495, 11, 1005, 430, 4619, 198, 18, 13, 30379, 279, 4096, 374, 264, 2867, 11, 64694, 12399, 198, 19, 13, 3494, 27785, 2764, 4823, 11, 912, 1023, 1495, 198, 517, 262, 330, 8975, 3936, 794, 330, 1820, 2683, 2316, 320, 817, 364, 48195, 4476, 29483, 6, 422, 13687, 11, 6062, 8819, 505, 1495, 16129, 262, 330, 10348, 794, 330, 1820, 2883, 836, 320, 817, 364, 35197, 22621, 524, 71, 17, 5709, 422, 13687, 11, 6062, 8819, 505, 1495, 16129, 262, 330, 4789, 794, 330, 5040, 220, 17, 12, 18, 23719, 29385, 4954, 279, 1401, 28423, 323, 8670, 702, 534], 'total_duration': 1911039300, 'load_duration': 22554400, 'prompt_eval_count': 378, 'prompt_eval_duration': 207000000, 'eval_count': 71, 'eval_duration': 1679000000}
+2025-02-03 00:53:58,566 - __main__ - INFO - Final parsed response: {'jobTitle': "the job title (use 'Senior Software Engineer' if accurate, otherwise extract from text)", 'company': "the company name (use 'Tech Corp</h2>' if accurate, otherwise extract from text)", 'description': 'write 2-3 sentences summarizing the key responsibilities and requirements'}
+2025-02-03 00:53:58,567 - werkzeug - INFO - 127.0.0.1 - - [03/Feb/2025 00:53:58] "POST /process HTTP/1.1" 200 -
+2025-02-03 00:56:01,950 - werkzeug - INFO -  * Detected change in 'D:\\Coding\\jobby_extension\\llama_server.py', reloading
+2025-02-03 00:56:01,988 - werkzeug - INFO -  * Restarting with stat
+2025-02-03 00:56:28,205 - werkzeug - INFO -  * Restarting with stat
